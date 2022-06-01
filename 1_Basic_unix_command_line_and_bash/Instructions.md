@@ -64,7 +64,7 @@ Say you want to edit a file on this remote machine.  Broadly speaking there are 
 Alternatively, you can use ftp/scp to remotely retrieve the file, change it on your computer using the text editor of your choice, then send it back to the remote machine.  This sounds clunky, but various software will automate the process for you.  Examples of this include:
 
 - winscp
-- Some fancier text editors that include ftp, like [Atom](https://atom.io/)(eg. by doing "atom /path/to/file". See next section for remote usage) or Sublimetext
+- Some fancier text editors that include ftp, like [Atom](https://atom.io/) (eg. use locally by doing "atom /path/to/file". See next section for remote usage) or Sublimetext
 - Any sort of FUSE filesystem navigator (Gnome's Nautilus file explorer does this well natively)
 
 ## Exercise
