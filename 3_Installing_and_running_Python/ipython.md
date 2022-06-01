@@ -13,13 +13,15 @@ If you're in an environment and haven't added ipyhton to tht environment, you ca
 Try the command again, it should work. 
 This is roughly what it should look like if you've succeeded: 
 
-    ![ipython_launch](ipython_images/ipython_launch.png)
+![ipython_launch](./ipython_images/ipython_launch.png)
     
 Let's try a few commands now
 
     import numpy as np
     a = np.linspace(0,10)
     a
+    
+![ipython_launch](./ipython_images/np_commands.png)
     
 The last command should print out what a looks like. This is one feature that makes ipython incredibly useful - 
 **you can quickly check the contents of your variables at various stages of manipulation.**
@@ -33,6 +35,9 @@ This should autocomplete the command to
     a.size
 
 because `a` is now defined to be a numpy array. 
+
+![ipython_launch](./ipython_images/autocomplete.png)
+
 So here's the second super useful feature of ipython - 
 **your commands autocomplete with tabs**. 
 
@@ -55,6 +60,9 @@ Another great feature in ipyhton is the `?` command. Doing
 gives you info on the variable `a` - it tells you its parameters and attributes. 
 Hit `q` to quit. 
 
+![ipython_launch](./ipython_images/a_question.png)
+
+
 If you have a variable and you forget what's stored in it, doing `var?` is a useful reminder. 
 You can also of course print it like we did above by simply demanding `var`. 
 So **ipython tells you about your defined variables**. 
@@ -65,6 +73,8 @@ You simply do
 
     help(a)
     
+![ipython_launch](./ipython_images/help_a.png)
+
 This prints some of the same info as `a?` but also a long, exhaustive list of functions you can perform on `a`. 
 So **ipython tells you all the things your variable class can do**.
 
@@ -76,7 +86,9 @@ Instead of scrolling through the tonnes of things you tried, copying the exact c
 ipython has you covered. Try 
 
     hist
-    
+
+![ipython_launch](./ipython_images/hist.png)
+
 This prints out every command you gave ipython so far in this shell. 
 So **ipython stores your commands per shell instance for easy retrieval**. 
 
