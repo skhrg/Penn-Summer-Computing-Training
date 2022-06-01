@@ -1,3 +1,7 @@
+# Let's install python (if you haven't)
+
+We recommend anaconda. It depends on the system but https://docs.anaconda.com/anaconda/install/ are the instructions. Let us help you through it. 
+
 # What is Conda?
 
 By now you have all installed Conda but what IS Conda? Conda is a very useful framework in which to maintain your python working space. It can:
