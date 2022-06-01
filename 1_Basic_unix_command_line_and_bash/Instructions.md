@@ -84,6 +84,8 @@ For more about how permissions and groups work, you can look many places, includ
 
 Note that using the `-l` flag on `ls`, eg `ls -l`, will show you the permissions and ownership of all the files and sub-directories.
 
+One user `root`, has control of everything on the system.  The `su` command lets you switch users (eg `su root`) to become the root user, for doing administrative things.  Alternatively, `sudo [command]` will let you run just one command with root privileges.  Unless you own or become involved in maintaining the system, you are unlikely to use either of these, but should know they exist.  If for some reason, someone set up a system where no password is needed for either (or you know the password), be careful as you *can* break things using this (for example, the infamous `rm -rf /`).
+
 ## Exercise
 Partner up.  First, figure out together how to read the permissions printed when you `ls -l`, using the resources above or whatever else you find.
 
@@ -95,25 +97,55 @@ The `*` symbol means something special.  It is a wildcard, and can stand in for 
 
 There are other wildcard symbols, which work similarly to regex: https://linuxhint.com/bash_wildcard_tutorial/
 
+# Variables
+Bash is a full-fledged language, and so of course you can use variables.
+
+```
+STR="Hello World!"
+echo $STR  
+```
+
+The `$` marks a character as a variable (to replace with it's corresponding value).  `$(some stuff)` similarly will run the `some stuff` in a subshell and replace the parens with the result.  Thus, `echo ls` just prints `ls`, but `echo $(ls)` prints the text that `ls` would output.
+
+- https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-5.html
+
 # Pipe
+You can chain multiple commands together by redirecting the output of one command to another, using the pipe symbol `|`.  `A | B` will take whatever the output of A is and 'pipe' it as input to B.  This can be chained arbitrarily many times. \
+
+You can also redirect output to a file using `>`, or `>>` to append to the file.
+
+- https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-4.html
+- https://stackoverflow.com/questions/9834086/what-is-a-simple-explanation-for-how-pipes-work-in-bash
+- https://askubuntu.com/questions/420981/how-do-i-save-terminal-output-to-a-file
 
 
 ## Exercise
-make file_generator.sh executable.  Run it.  mv all the files with 314 in them to a new folder.
-
-uses wildcard, and pipe?
+Make `file_generator.sh` executable.  Run it.  Make a file containing the names of each file in `~/test_files` that starts with the number 3 -- eg `31415` would have to be included, but `12345` would not -- or that contain a 7 at all.
 
 
-# Top, htop
+# top, htop
+The top command is a useful way to check what's running on the system (similar to the task manager on Windows), and how many resources are being used.  Processes you control that are causing issues can then be killed with some version of the `kill` command (either separately or from within top).  htop is essentially a prettier version of top.
 
-# .bashrc
-
-make one you like!
-
-tab completion
-up goes to last command, or inverse searches?
-
-# PATH
+Give it a go so you see what it looks like!
 
 
-something with ls | grep?
+# bashrc
+Go to your home directory and run `ls -a`.  You should see some files `.*` -- these are hidden files, which ls ignores by default.  Among these is `.bashrc`.  This file is run at the start of each bash shell session you start, and can be used to define the bash environment you want to work in.  In particular you can define quality of life features that might be useful to you, and set environment variables.
+
+## QOL
+Take a look at the `.bashrc` in `stuent0`'s home directory.  The first hundred or so lines just set up what the shell prompt looks like, in a way I happen to like. 
+
+Then, there are around 50 lines setting up tab completion, and using the up-arrows.  Instead of just showing the most recent command, this changes the up-arrow to do a reverse search using what you have typed so far.   
+
+There are then some lines defining aliases.  These are basically shortcut commands that run longer commands.  These can save a lot of time setting up common ssh connections you use, making `ls` us the `-a` flag by default if that's something you prefer, etc.
+
+Feel free to copy this to the `.bashrc` in your home folder and modify it as you like!
+
+## Environment Variables
+There are also a number of (generally in allcaps) [environment variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux), which can be important in determining how your bash shell operates.
+
+[One that you should know about](https://linuxhint.com/path_in_bash/) is `PATH`.  Run `echo $PATH` to see it.  It should include things like `/usr/local/bin`.  When you try to run a command -- `ls`, `grep`, `nano`, `python`, or anything else -- bash knows that this program exists by looking in all the directories specified in `PATH`.  Thus, the default `PATH` locations are the standard places that software binaries (or at least links to it) are placed upon installation.
+
+However, you may find that you want to install something on your user account rather than system-wide.  This is common if you are installing your own copy some analysis pipeline you are actively working on.  You 1) don't have root access, but more importantly 2) don't want the system-wide installation to be the version you are actively editing!  To do this, you will generally have to add a new directory to your `PATH` (eg, `~/my_software`), where you will also link/copy compiled versions of your code.
+
+[There is similarly](https://www.tutorialspoint.com/What-is-PYTHONPATH-environment-variable-in-Python) a `PYTHONPATH` variable that tells python where to look for modules (beyond the standard locations, which already includes a user-folder like `~/.local/lib/python3.10/site-packages`).

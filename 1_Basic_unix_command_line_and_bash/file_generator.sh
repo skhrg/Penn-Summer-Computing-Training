@@ -1,5 +1,6 @@
-mkdir ~/test_images
-cd ~/test_images
+mkdir ~/test_files
+cd ~/test_files
 for i in {0..100}:
-	# num= $RANDOM | md5sum | head -c 20; echo;
-	num= $RANDOM 
+do
+	touch $RANDOM;
+done;
