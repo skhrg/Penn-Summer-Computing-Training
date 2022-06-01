@@ -118,7 +118,7 @@ In general I recommend rebasing when the remote changes are on files you haven't
 You can tell git to do this by calling `git pull --rebase`.
 
 If the changes are on shared files I recommend merging.
-This is the default behavior of `push`.
+This is the default behavior of `pull`.
 
 ### Resolving Merge Conflicts
 Sometimes git will fail to merge properly and ask you to resolve the conflicts manually.
