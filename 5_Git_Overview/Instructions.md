@@ -286,3 +286,45 @@ To show forks you will have to press the button that says "compare across forks"
 
 The code you want to merge in is in the "head repository" in the "compare" branch.
 
+Your PR should include information about the code you are committing to help whoever is reviewing it.
+Some repositories may have specific information that they want you to include in your PR or particular formatting for the PR.
+
+## Other Useful Things
+
+### gitignore
+Sometimes you may want git to ignore certain files such as compiled code, data files, etc.
+To do this simply create a file in the root of your git repository called `.gitignore`.
+Any patterns contained in this file will be ignored by git, these can be specific file/folder paths or more generic patterns with wildcards.
+
+For example if my `.gitignore` contains the following:
+
+```
+./data
+*.o
+```
+
+git will ignore the `data` folder as well as any files with the `.o` extension.
+
+If git is already aware of a file, simply adding it to your `.gitignore` won't make it ignore it.
+First you need to tell git to forget about it by running `git rm --cached PATH`, where `PATH` is the path to the file.
+
+Be careful when doing this, if you omit the `--cached` flag the file will be deleted.
+
+If you want git to start tracking a file that your `.gitignore` tells it to ignore you can force add it with `git add -f PATH`, where `PATH` is the path to the file you want to track.
+
+
+### Issues
+GitHub includes a feature where users can raise issues on a repository.
+This can be a great way to track down weird bugs or put in feature requests.
+
+It also can be useful if you are looking for some code to contribute, you can assign an issue to yourself and put in a PR that closes it.
+
+### Markdown and README
+GitHub can render a number of different file types for viewing.
+One particularly useful one is markdown files (like this one), since markdown is readable both as plain text and when rendered.
+This makes it useful for writing documentation and instructions since it can quickly be referenced in a text editor.
+
+Typically, many repositories will include a file called a README with key information such as a description of the repository and installation instructions.
+If you write a README in markdown and title it `README.md` GitHub will automatically render it when you go to the repository.
+
+A useful reference for writing markdown can be found [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
