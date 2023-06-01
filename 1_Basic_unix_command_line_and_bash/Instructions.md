@@ -1,3 +1,5 @@
+# Command line and BASH 
+
 Analysis machines (including clusters) that you will use for research will typically be running some flavor of Linux (this will be true for many servers and dedicated devices you might encounter as well).  In particular, you will probably interact with these machines primarily via ssh (maybe with some ftp/sftp).  So, it is useful to be able to navigate using the command-line interface, which will in almost all cases default to a bash shell (though you can sometimes choose to use similar alternatives, eg zsh).  There are also a set of common to universal tools that you will regularly call upon in this sell (eg, grep).
 
 There exist many command-line/bash guides, so rather than try to recreate another one here, I will list a few that I thought were useful (feel free to search for more!).  
@@ -24,10 +26,10 @@ Similarly, the `man` command will provide the more full ocumentation for whateve
 
 Generally, (depending on how you set things up, see the `.bashrc` section below), you can use `tab` to complete commands you are typing, including the names of relevant directories/files.
 
-Finally, as there is more already written on all these topics (by people more knowledgeable than me), I have included helpful links.  Many of these are the result of a quick google.  While knowing what to google and knowing that certain helpful resources like the arch-linux wiki exist help, you can definitely find a lot of this information pretty readily by searching on your own!
+Finally, as there is more already written on all these topics (by people more knowledgeable than me), I have included helpful links.  Many of these are the result of a quick google.  While it's helpful knowing what to google and knowing that certain helpful resources like the arch-linux wiki exists, you can definitely find a lot of this information pretty readily by searching on your own!
 
-# Exercise Setup
-We will provide you with the ip address of a linux-based computer to ssh into, and a username/password for you to use.  You can use that account/connection for the rest of these exercises.
+## Exercise Setup
+We will provide you with the ip address of a linux-based computer to ssh into, and a username/password for you to use.  Use that account/connection for the rest of these exercises. We will go over ssh-ing into clusters later. 
 
 Go to part (2) for details on how to ssh.
 
@@ -59,13 +61,15 @@ Now, in your home directory, and looking up commands you need as you go:
 - move the file into the directory
 
 # Editors
-Say you want to edit a file on this remote machine.  Broadly speaking there are two ways to do it.  The first is to use a command-line text editor, such as `vi`, `vim`, or `nano`.  (A sub-category of this, though I've rarely seen anyone do this for the reasons we will see below, is to use x-forwarding to open a gui text editor on the remote machine.  I would not generally expect there to be many installed on analysis machines you will use.)
+Say you want to edit a file on this remote machine.  Broadly speaking there are two ways to do it.  The first is to use a command-line text editor, such as `vi`, `vim`, or `nano`.  (A sub-category of this, though I've rarely seen anyone do this, is to use x-forwarding to open a gui text editor on the remote machine.  I would not generally expect there to be many installed on analysis machines you will use.)
 
 Alternatively, you can use ftp/scp to remotely retrieve the file, change it on your computer using the text editor of your choice, then send it back to the remote machine.  This sounds clunky, but various software will automate the process for you.  Examples of this include:
 
 - winscp
 - Some fancier text editors that include ftp, like [Atom](https://atom.io/) (eg. use locally by doing "atom /path/to/file". See next section for remote usage) or Sublimetext
 - Any sort of FUSE filesystem navigator (Gnome's Nautilus file explorer does this well natively)
+
+While the GUI / ftp options can be more aesthetic, I **strongly recommend** you pick a command-line editor like vim or nano and become fluent in it. It will work on all machines - yours and remote ones, and is the fastest and most fail-safe option. 
 
 ## Exercise
 Add some text to the file!
@@ -124,7 +128,7 @@ Make `file_generator.sh` executable.  Run it.  Make a file containing the names 
 
 
 # top, htop
-The top command is a useful way to check what's running on the system (similar to the task manager on Windows), and how many resources are being used.  Processes you control that are causing issues can then be killed with some version of the `kill` command (either separately or from within top).  htop is essentially a prettier version of top.
+The top command is a useful way to check what's running on the system (similar to the task manager on Windows), and how many resources are being used.  Processes you control that are causing issues can then be killed with some version of the `kill` command (either separately or from within top).  htop is essentially a prettier version of top. Hit `q` to exit. 
 
 Give it a go so you see what it looks like!
 
@@ -132,14 +136,52 @@ Give it a go so you see what it looks like!
 # bashrc
 Go to your home directory and run `ls -a`.  You should see some files `.*` -- these are hidden files, which ls ignores by default.  Among these is `.bashrc`.  This file is run at the start of each bash shell session you start, and can be used to define the bash environment you want to work in.  In particular you can define quality of life features that might be useful to you, and set environment variables.
 
-## QOL
+<!-- ## QOL
 Take a look at the `.bashrc` in `stuent0`'s home directory.  The first hundred or so lines just set up what the shell prompt looks like, in a way I happen to like. 
 
 Then, there are around 50 lines setting up tab completion, and using the up-arrows.  Instead of just showing the most recent command, this changes the up-arrow to do a reverse search using what you have typed so far.   
 
 There are then some lines defining aliases.  These are basically shortcut commands that run longer commands.  These can save a lot of time setting up common ssh connections you use, making `ls` us the `-a` flag by default if that's something you prefer, etc.
 
-Feel free to copy this to the `.bashrc` in your home folder and modify it as you like!
+Feel free to copy this to the `.bashrc` in your home folder and modify it as you like! -->
+
+## Aliases 
+
+Aliases are way to make your life easier and your command line faster. You can define shorthands for commands that you often use as 
+
+`alias ls='ls -G'`
+
+Note the lack of spaces around the `=`. Depending on your terminal, this example will print the output of `ls` with nice colours that denote what is a file vs a directory vs an executable. 
+I use it to define clusters I `ssh` into, executables I often call and even directories I most navigate to. Here's a snippet from an [MIT computing resource](https://missing.csail.mit.edu/2020/command-line/) about aliases that I found useful: 
+
+    # Make shorthands for common flags
+    alias ll="ls -lh"
+
+    # Save a lot of typing for common commands
+    alias gs="git status"
+    alias gc="git commit"
+    alias v="vim"
+
+    # Save you from mistyping
+    alias sl=ls
+
+    # Overwrite existing commands for better defaults
+    alias mv="mv -i"           # -i prompts before overwrite
+    alias mkdir="mkdir -p"     # -p make parent dirs as needed
+    alias df="df -h"           # -h prints human readable format
+
+    # Alias can be composed
+    alias la="ls -A"
+    alias lla="la -l"
+
+    # To ignore an alias run it prepended with \
+    \ls
+    # Or disable an alias altogether with unalias
+    unalias la
+
+    # To get an alias definition just call it with alias
+    alias ll
+    # Will print ll='ls -lh'
 
 ## Environment Variables
 There are also a number of (generally in allcaps) [environment variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux), which can be important in determining how your bash shell operates.
@@ -149,3 +191,30 @@ There are also a number of (generally in allcaps) [environment variables](https:
 However, you may find that you want to install something on your user account rather than system-wide.  This is common if you are installing your own copy some analysis pipeline you are actively working on.  You 1) don't have root access, but more importantly 2) don't want the system-wide installation to be the version you are actively editing!  To do this, you will generally have to add a new directory to your `PATH` (eg, `~/my_software`), where you will also link/copy compiled versions of your code.
 
 [There is similarly](https://www.tutorialspoint.com/What-is-PYTHONPATH-environment-variable-in-Python) a `PYTHONPATH` variable that tells python where to look for modules (beyond the standard locations, which already includes a user-folder like `~/.local/lib/python3.10/site-packages`).
+
+Make sure that you are only *appending* to your `PATH` and *not replacing* it. This can be done by
+
+`export PATH="/path/to/additional/directory:$PATH"
+
+This appends the contents (`$`) of your current `PATH` to the end of your new `PATH`. The command `export` redefines the variable. 
+
+# Summary of generally useful commands 
+
+- `pwd` print current working directory 
+- `cd /path/to/directory/` change directory 
+- `ls` list all contents of current working directory. You can also ask for the contents of a specific directory with `ls /path/to/dir` 
+- `mkdir /path/to/directory/XX` make a directory at the specified location with the name `XX`
+- `touch XX` update the time stamp of file `XX` or create it if it doesn't exist 
+- `mv XX YY` move or rename files. To move, `XX` and `YY` should be the `/path/to/file/` and `/new/path/to/file/dir` respectively. 
+- `chmod u+x,g+w,o+r XX` change permissions of file `XX`, specifically here, give you, the user, execute permissions, give the group writing permissions and all others reading permissions 
+- `XX --help` or `man XX` print documentation for any command `XX`. To get out of the manual page, hit `q`
+- `echo XX` prints `XX` to the screen. But `echo` can also be used to print the contents of a variable by adding a dollar sign as `echo $XX`
+- `$PATH` tells you all the directories your shell will look for executables in. Unless the command you are trying to execute is in one of these locations, the shell will not recognise it. 
+- `which XX` tells you the location of the executable `XX` if your shell recognises it. Very useful to ensure for eg. that you are using the correct python / C++ / etc distribution 
+- `vi XX` open the file `XX` in the text editor vim. Replace `vi` with the command for your favourite editor.
+
+### Aesthetic recommendations 
+
+- Get iTerminal 
+- Get zsh
+- Get oh-my-zsh 
