@@ -232,7 +232,7 @@ To do this run:
 ```
 git fetch
 git checkout BRANCH_NAME
-git merge master
+git merge origin/master
 ```
 
 Once you are done developing you can merge your commits into the main branch.
@@ -243,6 +243,15 @@ git checkout master
 git pull
 git merge BRANCH_NAME
 ```
+
+Sometimes you just want to grab a specific commit and add it to your branch.
+To do so first `checkout` to the branch you want to grab the commit from (usually `master`) and use `git log` to
+find the hash of the commit you want. Then from your branch just run:
+
+```
+git cherry-pick COMMIT_SHA
+```
+
 
 ### Forking
 A fork is similar to a branch but it creates a whole new repository.
@@ -270,6 +279,7 @@ git checkout master
 git merge upstream/master
 ```
 
+### Getting commits from another branch
 ### Pull Requests
 To merge your fork into the original repository you will typically have to open what is called a "Pull Request" or PR for short.
 A PR allows the owner of the original repository to review your commits and request changes before approving the code to be merged in.
@@ -290,6 +300,57 @@ Your PR should include information about the code you are committing to help who
 Some repositories may have specific information that they want you to include in your PR or particular formatting for the PR.
 
 ## Other Useful Things
+### Fetching vs Pulling
+`git fetch` and `git pull` are closely related commands, the difference between them can be confusing to beginners.
+
+`git fetch` grabs changes from your remote repository but doesn't apply them.
+They are saved in the local copy of the remote branches but not the ones you actually work on.
+Usually this will be something like `origin/master`.
+
+Once you `fetch` the remote copy you can inspect it:
+```
+git log origin/BRANCH_NAME
+git diff origin/BRANCH_NAME
+git diff origin/BRANCH_NAME -- FILE_TO_DIFF
+```
+
+This is often useful when you want to decide if you want to `merge` or `rebase`.
+
+`git pull` on the other hand actually applies the changes.
+So after a `git fetch` you will need to `pull` to have the changes reflected in your working copy.
+Note that `git pull` has an implicit `fetch` in it. So you don't need to `fetch` before a `pull` if you don't want to.
+If you have already fetched and don't want to `pull` for whatever reason you can also run:
+```
+git checkout BRANCH_NAME
+git merge origin/BRANCH_NAME
+```
+
+### Tagging
+Git allows you to tag commits. This can be useful when you want to ability to quickly go back to a certain state.
+
+To list tags do:
+```
+git tag
+```
+
+If you want more information about the tag run:
+```
+git show TAG_NAME
+```
+ To go to the state of that tag run:
+```
+git checkout TAG_NAME
+```
+
+To create a tag do
+```
+git tag -a TAG_NAME -m "TAG_ANNOTATION"
+```
+
+To make the tag available to others you can push it with:
+```
+git push origin --tags
+```
 
 ### gitignore
 Sometimes you may want git to ignore certain files such as compiled code, data files, etc.
@@ -328,3 +389,10 @@ Typically, many repositories will include a file called a README with key inform
 If you write a README in markdown and title it `README.md` GitHub will automatically render it when you go to the repository.
 
 A useful reference for writing markdown can be found [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+
+### Resources
+* [git-scm](https://git-scm.com/docs): The official git docs and in my opinion the best around
+* [git cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/): Cheatsheet made by GitHub, good for quick references
+* [think-like-a-git](https://think-like-a-git.net/sections/about-this-site.html): Solid tutorial for "advanced beginners", has a nice section on thinking of git in terms of graph theory
+* [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph): Wikipedia article on the math behind git
