@@ -194,7 +194,7 @@ However, you may find that you want to install something on your user account ra
 
 Make sure that you are only *appending* to your `PATH` and *not replacing* it. This can be done by
 
-`export PATH="/path/to/additional/directory:$PATH"
+`export PATH="/path/to/additional/directory:$PATH"`
 
 This appends the contents (`$`) of your current `PATH` to the end of your new `PATH`. The command `export` redefines the variable. 
 
@@ -213,8 +213,19 @@ This appends the contents (`$`) of your current `PATH` to the end of your new `P
 - `which XX` tells you the location of the executable `XX` if your shell recognises it. Very useful to ensure for eg. that you are using the correct python / C++ / etc distribution 
 - `vi XX` open the file `XX` in the text editor vim. Replace `vi` with the command for your favourite editor.
 
+## Powerful Additional Tools
+- `tmux` terminal multiplexor 
+- `fzf` fuzzy finder that can integrate into your shell amongst other thingt
+- `zoxide` an alternative to `cd` that will uses `fzf` and a database to let you `cd` without a full path
+- `ripgrep` alternative to `grep` that is super fast
+- `ripgrep-all` extension to `ripgrep` that lets you search in non text files (PDFs, inside zipped archives, etc.)
+- `thefuck` tool that corrects errors in your shell commands
+
 ### Aesthetic recommendations 
 
-- Get iTerminal 
+- Get iTerminal (for mac people)
 - Get zsh
-- Get oh-my-zsh 
+- Get oh-my-zsh
+- Powerline
+- `exa` like `ls` but prettier
+- `bat` like `cat` but with colors
