@@ -15172,7 +15172,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="ROOT-Data-Parsing">ROOT Data Parsing<a class="anchor-link" href="#ROOT-Data-Parsing">&#182;</a></h1><p>Display this notebook in slidshow form by running</p>
+<h1 id="ROOT">ROOT<a class="anchor-link" href="#ROOT">&#182;</a></h1><p>Display this notebook in slidshow form by running</p>
 <pre><code>jupyter nbconvert ROOT.ipynb --to slides --post serve
 </code></pre>
 
@@ -15500,7 +15500,7 @@ div.jp-OutputPrompt {
 
 </div>
 
-</div>
+</div></section></section><section ><section >
 <div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15510,8 +15510,109 @@ div.jp-OutputPrompt {
 <h3 id="Exercise-1">Exercise 1<a class="anchor-link" href="#Exercise-1">&#182;</a></h3><ul>
 <li>Note the branch <code>truth_lep1_pdgId</code></li>
 <li>This is the pdgId of a lepton in each event (11 = e, 13 = mu, 15 = tau)</li>
-<li>Count the number of occurances of each lepton</li>
+<li>Count the number of occurences of each lepton</li>
 </ul>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fill me!</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="fragment" >
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Answer: 74 electron, 75 muon, 7 tau</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div></div></section></section><section ><section >
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Exercise-2">Exercise 2<a class="anchor-link" href="#Exercise-2">&#182;</a></h3><ul>
+<li>Write a function that returns the mass of the <code>lep1</code>. Take <code>event</code> as an argument.</li>
+<li>Use the function to print the entry number and the mass for the 7 tau events.</li>
+<li>Hint 1: Create a <a href="https://root.cern.ch/doc/master/classTLorentzVector.html">TLorentzVector</a> with <code>ROOT.TLorentzVector(px, py, pz, e)</code></li>
+<li>Hint 2: Search the documentation for how to retrieve the mass</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">truth_lep1_mass</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Gets the mass of &#39;truth_lep1&#39; from an event in our test file.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">pass</span> <span class="c1"># TODO</span>
+
+<span class="c1"># implement me!</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Optional advanced exercise: generalize the function to any of the objects in the file</p>
+
+</div>
+</div>
+</div>
+</div></section></section><section ><section >
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Answer:</p>
+<pre><code>10 1.777402522020421
+50 1.7730776138898674
+56 1.777790404945941
+105 1.7773254352322867
+116 1.777033892011321
+127 1.7769968885935143
+132 1.7777922133134614
+</code></pre>
 
 </div>
 </div>
@@ -15523,24 +15624,36 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>Solution: 74 electron, 75 muon, 7 tau</li>
-</ul>
+<p>Advanced exercise solution:</p>
 
 </div>
 </div>
 </div>
-</div>
-<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Gets the mass of an object from an event in our test file.</span>
+<span class="sd">    @param object </span>
+<span class="sd">        The object name prefix, like &#39;truth_lep1&#39;.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">par_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="s1">&#39;py&#39;</span><span class="p">,</span> <span class="s1">&#39;pz&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">]</span>
+    <span class="n">pars</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">object</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">par_names</span><span class="p">]</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">TLorentzVector</span><span class="p">(</span><span class="o">*</span><span class="n">pars</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">M</span><span class="p">()</span>
+</pre></div>
 
+     </div>
 </div>
 </div>
 </div>
+
 </div></div></section></section>
 </div>
 </div>
