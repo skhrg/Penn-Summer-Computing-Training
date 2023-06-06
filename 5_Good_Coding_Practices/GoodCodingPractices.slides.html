@@ -15453,6 +15453,7 @@ div.jp-OutputPrompt {
 <li>Functions should usually be under 40 lines (if not, break into helper routines)</li>
 <li>Document code with comments and docstrings</li>
 </ul>
+<p>Lots of automatic formatting tools!</p>
 
 </div>
 </div>
@@ -15565,6 +15566,10 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Master-Functions">Master Functions<a class="anchor-link" href="#Master-Functions">&#182;</a></h3><p>Avoid stuffing everything into a single function/class</p>
+<ul>
+<li>Hard to read and understand logic flow</li>
+<li>Really really hard to modify</li>
+</ul>
 
 </div>
 </div>
@@ -15578,7 +15583,7 @@ div.jp-OutputPrompt {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># 500 lines of business</span>
+    <span class="c1"># 1000 lines of business</span>
     <span class="k">pass</span>
 </pre></div>
 
@@ -15608,7 +15613,7 @@ div.jp-OutputPrompt {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">main2</span><span class="p">():</span>
-    <span class="c1"># rewrite most of the 500 lines</span>
+    <span class="c1"># rewrite most of the 1000 lines</span>
     <span class="k">pass</span>
 </pre></div>
 
@@ -15624,7 +15629,11 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Master-Functions-(2)">Master Functions (2)<a class="anchor-link" href="#Master-Functions-(2)">&#182;</a></h3><p>Make your code <strong>modular</strong> instead</p>
+<h3 id="Master-Functions-(2)">Master Functions (2)<a class="anchor-link" href="#Master-Functions-(2)">&#182;</a></h3><p>Make your code <strong>modular</strong> instead.</p>
+<ul>
+<li>Functions should do only one thing</li>
+<li>Inputs and outputs should be explicit and obvious</li>
+</ul>
 
 </div>
 </div>
@@ -15640,7 +15649,6 @@ div.jp-OutputPrompt {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">read_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s1">&#39;XXX&#39;</span><span class="p">)</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
@@ -15657,7 +15665,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Advisor: try doing this again but normalize after filtering, and change XXX</p>
+<p>Advisor: try doing this again but filter the data, and change XXX</p>
 
 </div>
 </div>
@@ -15693,7 +15701,7 @@ div.jp-OutputPrompt {
 <h3 id="Globals">Globals<a class="anchor-link" href="#Globals">&#182;</a></h3><ul>
 <li>Avoid using global variables!</li>
 <li>Super hard to track down when it's being used and changed</li>
-<li>Python gives you guard rails with the <code>global</code> keyword &lt;-- big red flag!</li>
+<li>Python gives you guard rails with the <code>global</code> keyword &lt;-- <span style="color:red">big red flag!</span></li>
 </ul>
 
 </div>
@@ -15853,8 +15861,8 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Side-Effects">Side Effects<a class="anchor-link" href="#Side-Effects">&#182;</a></h3><ul>
-<li>Globals are bad because they encourage <strong>side effects</strong></li>
+<h3 id="Globals-(2)">Globals (2)<a class="anchor-link" href="#Globals-(2)">&#182;</a></h3><ul>
+<li>Globals are bad because they <strong>reduce modularity</strong> and encourage <strong>side effects</strong></li>
 <li>Function changes something that you didn't expect --&gt; bugs!</li>
 <li>In general, side effects should be avoided</li>
 </ul>
