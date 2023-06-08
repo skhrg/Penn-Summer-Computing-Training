@@ -60,7 +60,7 @@ To clone a repository follow these steps:
 So to clone this repository the command would be:
 
 ```
-git clone git@github.com:jeffiuliano/Penn-Summer-Computing-Training.git
+git clone git@github.com:skhrg/Penn-Summer-Computing-Training.git
 ```
 
 ### Staging Changes
