@@ -59,7 +59,8 @@ $ python3 old_python_script.py 
 26.9167556653
 ```
 Based on a quick reading of the code, you summise that this is likely a numerical integration script, that uses the rectangular rule!
-![[Pasted image 20240610105218.png]]You can see that the variable `x_cubes` stores a bunch of pre-factors for the equation:
+![](integration.png)
+You can see that the variable `x_cubes` stores a bunch of pre-factors for the equation:
 $$
 {x\_cubes} \cdot x^3 + 5x^2 + 2x + 5
 $$
@@ -290,7 +291,7 @@ py-spy record -o profile.svg -- python test_integration.py
 
 This will produce a file (profile.svg) that you can open in your browser. On MacOS, for instance, you could do `open -a Safari profile.svg`.
 
-![[Screenshot 2024-06-10 at 12.05.46 PM.png]]
+![](initial_profile.png)
 
 Our expensive lines are the following two:
 
@@ -339,7 +340,7 @@ return integrals
 
 Running this through our profile yet again leaves us with only one hot line:
 
-![[Screenshot 2024-06-10 at 12.44.26 PM.png]]
+![](one_hot_line.png)
 
 which is the calculation of the output areas. Our one line, `prefactor * x ** 3 + 5 * x ** 2 + 2 * x + 5`, is taking up almost the entirety of our program's runtime!
 
@@ -375,7 +376,7 @@ return integrals
 
 This runs our benchmark in 0.277 seconds, a 15x improvement on our starting time. The flamegraph tells us that we actually improved this even more than we think, with our actual code taking up a TINY fraction of the runtime (most of the time is spent importing modules).
 
-![[Screenshot 2024-06-10 at 12.50.43 PM.png]]
+![](final_profile.png)
 
 ## Summary
 
